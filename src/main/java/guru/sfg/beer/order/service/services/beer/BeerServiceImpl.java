@@ -5,13 +5,15 @@ import java.util.UUID;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import guru.sfg.beer.order.service.web.model.BeerDto;
 
 
 @ConfigurationProperties(prefix = "sfg.brewery", ignoreUnknownFields = false)
-public class BeerServiceRestTemplateImpl implements BeerService {
+@Service
+public class BeerServiceImpl implements BeerService {
 
     private final String BEER_PATH_V1 = "/api/v1/beer/";
     private final String BEER_UPC_PATH_V1 = "/api/v1/beerUpc/";
@@ -19,7 +21,7 @@ public class BeerServiceRestTemplateImpl implements BeerService {
 
     private String beerServiceHost;
 
-    public BeerServiceRestTemplateImpl(RestTemplateBuilder restTemplateBuilder) {
+    public BeerServiceImpl(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
